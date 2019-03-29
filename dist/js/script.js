@@ -161,6 +161,45 @@
 
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData:', formData);
+
+      const price = thisProduct.data.price;
+
+      /* find all params */
+
+      /* START loop for each param */
+
+        /* START loop for each option */
+
+          /* START check if this option is checked */
+
+            /* create new variable checked and set it to false */
+
+            /* START if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
+
+              /* set checked to true */
+
+            /* END if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
+
+          /* END check if this option is checked */
+
+          /* if option is checked and option is not deafult */
+
+            /* find price of this product */
+
+            /* add the price of this option to the price of this product */
+
+          /* else if option is not checked and option is deafult */
+
+            /* subtract the price of this option from the price of this product */
+
+          /* if option is checked and option is not deafult */
+
+        /* END loop for each option */
+
+      /* END loop for each param */
+
+      thisProduct.priceElem = price;
+
     }
   }
 
