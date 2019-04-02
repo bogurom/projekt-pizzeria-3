@@ -156,47 +156,77 @@
     }
 
     processOrder(){
+
+      // metoda poprawnie oblicza cenę produktu, ale cena wyświetlana na stronie nie zmienia się...?
       const thisProduct = this;
       console.log('processOrder');
 
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData:', formData);
 
-      const price = thisProduct.data.price;
+      let price = thisProduct.data.price;
 
       /* find all params */
+      console.log('thisProduct:', thisProduct);
+      const allParams = thisProduct.data.params;
+      console.log('allParams:', allParams);
 
       /* START loop for each param */
+      for(let paramId in allParams){
+        const param = allParams[paramId];
+        console.log('param:', param);
+
+        /* find all options in this param */
+        const options = param['options'];
+        console.log('options:', options);
 
         /* START loop for each option */
+        for(let optionId in options){
 
-          /* START check if this option is checked */
+          const option = options[optionId];
+          console.log('option:', option);
 
-            /* create new variable checked and set it to false */
+          /* find price of this option */
+          const priceOfOption = option.price;
+          console.log('priceOfOption:', priceOfOption);
 
-            /* START if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
+          /* create new variable checked and set it to false */
+          let checked = false;
 
-              /* set checked to true */
+          /* START if in formData there is a key equal to the key of the parameter and if in array under this key there is key of this option */
+          if (formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1) {
 
-            /* END if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
+            /* set checked to true */
+            checked = true;
+            console.log('checked:', checked);
 
-          /* END check if this option is checked */
+          /* END if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
+          }
 
           /* if option is checked and option is not deafult */
-
-            /* find price of this product */
+          if (checked && !option.default){
 
             /* add the price of this option to the price of this product */
+            console.log('previous price:', price);
+            price += priceOfOption;
+            console.log('price of the option is added to price of the product. New price:', price);
 
           /* else if option is not checked and option is deafult */
+          } else if(!checked && option.default){
 
             /* subtract the price of this option from the price of this product */
+            console.log('previous price:', price);
+            price -= priceOfOption;
+            console.log('price of the option is subtracted from the price of the product. New price:', price);
 
-          /* if option is checked and option is not deafult */
+          /* END if option is checked and option is not deafult */
+          }
 
         /* END loop for each option */
+      }
 
       /* END loop for each param */
+    }
 
       thisProduct.priceElem = price;
 
