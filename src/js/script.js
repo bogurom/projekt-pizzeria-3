@@ -96,6 +96,7 @@
 
       console.log('thisProduct.form:', thisProduct.form);
       console.log('thisProduct.formInputs:', thisProduct.formInputs);
+      console.log('thisProduct.priceElem:', thisProduct.priceElem);
     }
 
     initAccordion(){
@@ -210,6 +211,9 @@
             /* add the price of this option to the price of this product */
             console.log('previous price:', price);
             price += priceOfOption;
+            // const innerHTMLOfPriceElem = thisProduct.priceElem.innerHTML;
+            // console.log('innerHTMLOfPriceElem:', innerHTMLOfPriceElem);
+            // thisProduct.priceElem.innerHTML = '<span class="price">' + price + '</span>';
             console.log('price of the option is added to price of the product. New price:', price);
 
           /* else if option is not checked and option is deafult */
@@ -218,9 +222,42 @@
             /* subtract the price of this option from the price of this product */
             console.log('previous price:', price);
             price -= priceOfOption;
+
             console.log('price of the option is subtracted from the price of the product. New price:', price);
 
           /* END if option is checked and option is not deafult */
+          }
+
+          /* find all images for this option */
+          const imageSelector = "." + paramId + "-" + optionId;
+          console.log('imageSelector:', imageSelector);
+          const allImagesforThisOption = thisProduct.imageWrapper.querySelectorAll(imageSelector);
+          console.log('allImagesforThisOption:', allImagesforThisOption);
+
+          /* if option is selected */
+          if(checked == true){
+
+            /* START for each image for this option */
+            for(let image of allImagesforThisOption){
+
+              /* add class registered in classNames.menuProduct.imageVisible */
+              image.classList.add(classNames.menuProduct.imageVisible);
+
+            /* END for each image for this option */
+            }
+
+
+          } else {
+
+            /* START for each image for this option */
+            for(let image of allImagesforThisOption){
+
+              /* remove class registered in classNames.menuProduct.imageVisible */
+              image.classList.remove(classNames.menuProduct.imageVisible);
+
+            /* END for each image for this option */
+            }
+
           }
 
         /* END loop for each option */
