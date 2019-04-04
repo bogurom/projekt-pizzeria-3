@@ -63,6 +63,7 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
       console.log('new Product:', thisProduct);
@@ -93,10 +94,12 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
 
-      console.log('thisProduct.form:', thisProduct.form);
-      console.log('thisProduct.formInputs:', thisProduct.formInputs);
-      console.log('thisProduct.priceElem:', thisProduct.priceElem);
+
+      // console.log('thisProduct.form:', thisProduct.form);
+      // console.log('thisProduct.formInputs:', thisProduct.formInputs);
+      // console.log('thisProduct.priceElem:', thisProduct.priceElem);
     }
 
     initAccordion(){
@@ -105,7 +108,7 @@
 
       /* find the clickable trigger (the element that should react to clicking) */
       const trigger = thisProduct.accordionTrigger;
-      console.log('trigger:', trigger);
+      // console.log('trigger:', trigger);
 
       /* START: click event listener to trigger */
       trigger.addEventListener('click', function(event){
@@ -118,7 +121,7 @@
 
         /* find all active products */
         const allActiveProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log('allActiveProducts:', allActiveProducts);
+        // console.log('allActiveProducts:', allActiveProducts);
 
         /* START LOOP: for each active product */
         for (let activeProduct of allActiveProducts) {
@@ -138,7 +141,7 @@
 
     initOrderForm(){
       const thisProduct = this;
-      console.log('initOrderForm');
+      // console.log('initOrderForm');
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -157,40 +160,46 @@
       });
     }
 
+    initAmountWidget(){
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+
     processOrder(){
 
       // metoda poprawnie oblicza cenę produktu, ale cena wyświetlana na stronie nie zmienia się...?
       const thisProduct = this;
-      console.log('processOrder');
+      // console.log('processOrder');
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData:', formData);
+      // console.log('formData:', formData);
 
       let price = thisProduct.data.price;
 
       /* find all params */
-      console.log('thisProduct:', thisProduct);
+      // console.log('thisProduct:', thisProduct);
       const allParams = thisProduct.data.params;
-      console.log('allParams:', allParams);
+      // console.log('allParams:', allParams);
 
       /* START loop for each param */
       for(let paramId in allParams){
         const param = allParams[paramId];
-        console.log('param:', param);
+        // console.log('param:', param);
 
         /* find all options in this param */
         const options = param['options'];
-        console.log('options:', options);
+        // console.log('options:', options);
 
         /* START loop for each option */
         for(let optionId in options){
 
           const option = options[optionId];
-          console.log('option:', option);
+          // console.log('option:', option);
 
           /* find price of this option */
           const priceOfOption = option.price;
-          console.log('priceOfOption:', priceOfOption);
+          // console.log('priceOfOption:', priceOfOption);
 
           /* create new variable checked and set it to false */
           let checked = false;
@@ -200,7 +209,7 @@
 
             /* set checked to true */
             checked = true;
-            console.log('checked:', checked);
+            // console.log('checked:', checked);
 
           /* END if in formData there is a key equal to key of the parameter and if in array under this key there is key of this option */
           }
@@ -209,30 +218,30 @@
           if (checked && !option.default){
 
             /* add the price of this option to the price of this product */
-            console.log('previous price:', price);
+            // console.log('previous price:', price);
             price += priceOfOption;
             // const innerHTMLOfPriceElem = thisProduct.priceElem.innerHTML;
-            // console.log('innerHTMLOfPriceElem:', innerHTMLOfPriceElem);
+            // // console.log('innerHTMLOfPriceElem:', innerHTMLOfPriceElem);
             // thisProduct.priceElem.innerHTML = '<span class="price">' + price + '</span>';
-            console.log('price of the option is added to price of the product. New price:', price);
+            // console.log('price of the option is added to price of the product. New price:', price);
 
           /* else if option is not checked and option is deafult */
           } else if(!checked && option.default){
 
             /* subtract the price of this option from the price of this product */
-            console.log('previous price:', price);
+            // console.log('previous price:', price);
             price -= priceOfOption;
 
-            console.log('price of the option is subtracted from the price of the product. New price:', price);
+            // console.log('price of the option is subtracted from the price of the product. New price:', price);
 
           /* END if option is checked and option is not deafult */
           }
 
           /* find all images for this option */
           const imageSelector = "." + paramId + "-" + optionId;
-          console.log('imageSelector:', imageSelector);
+          // console.log('imageSelector:', imageSelector);
           const allImagesforThisOption = thisProduct.imageWrapper.querySelectorAll(imageSelector);
-          console.log('allImagesforThisOption:', allImagesforThisOption);
+          // console.log('allImagesforThisOption:', allImagesforThisOption);
 
           /* if option is selected */
           if(checked == true){
@@ -271,17 +280,68 @@
     }
   }
 
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value){
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /* TODO: Add validation */
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
+    }
+
+    initActions(){
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function(event){
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+  }
+
   const app = {
     initMenu: function(){
       const thisApp = this;
 
-      console.log('thisApp.data:', thisApp.data);
+      // console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
       }
       // const testProduct = new Product();
-      // console.log('testProduct:', testProduct);
+      // // console.log('testProduct:', testProduct);
     },
 
     initData: function(){
