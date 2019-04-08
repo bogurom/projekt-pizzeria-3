@@ -510,6 +510,7 @@
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
+      thisCartProduct.hideEditButton();
 
       // console.log('new CartProduct:', thisCartProduct);
       // console.log('productData:', menuProduct);
@@ -565,7 +566,15 @@
         thisCartProduct.remove();
       });
     }
+
+    hideEditButton(){
+      const thisCartProduct = this;
+      const editButton = document.querySelector(select.cartProduct.edit);
+      console.log('editButton:', editButton);
+      editButton.style.display = 'none';
+    }
   }
+
 
   const app = {
     initMenu: function(){
