@@ -589,9 +589,11 @@
 
     hideEditButton(){
       const thisCartProduct = this;
-      const editButton = document.querySelector(select.cartProduct.edit);
-      console.log('editButton:', editButton);
-      editButton.style.display = 'none';
+      const editButtons = document.querySelectorAll(select.cartProduct.edit);
+      console.log('editButtons:', editButtons);
+      for(let editButton of editButtons){
+        editButton.style.display = 'none';
+      }
     }
   }
 
