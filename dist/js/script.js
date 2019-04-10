@@ -492,6 +492,12 @@
       }
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+
+      if(thisCart.totalNumber == 0){
+        thisCart.deliveryFee = 0;
+        thisCart.totalPrice = 0;
+      }
+
       console.log('thisCart.totalNumber:', thisCart.totalNumber);
       console.log('thisCart.subtotalPrice:', thisCart.subtotalPrice);
       console.log('thisCart.totalPrice:', thisCart.totalPrice);
