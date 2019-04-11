@@ -434,7 +434,11 @@
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
       // console.log('thisCart.dom.productList:', thisCart.dom.productList);
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-      console.log('thisCart.dom.form:', thisCart.dom.form);
+      //console.log('thisCart.dom.form:', thisCart.dom.form);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      //console.log('thisCart.dom.phone:', thisCart.dom.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
+      //console.log('thisCart.dom.address:', thisCart.dom.address);
 
       thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
@@ -532,9 +536,25 @@
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        address: 'test',
+        products: [],
+        phone: thisCart.dom.phone,
+        address: thisCart.dom.address,
+        totalNumber: thisCart.totalNumber,
+        subtotalPrice: thisCart.subtotalPrice,
+        deliveryFee: thisCart.deliveryFee,
         totalPrice: thisCart.totalPrice,
       };
+
+      console.log('thisCart.products:', thisCart.products);
+
+      for(let product of thisCart.products){
+        payload.products.push(product.getData());
+        // const productData = product.getData();
+        // payload.products.push(productData);
+        console.log('getting data');
+        console.log('payload.products:', payload.products);
+        // console.log('productData:', productData);
+      }
 
       const options = {
         method: 'POST',
@@ -571,6 +591,18 @@
 
       // console.log('new CartProduct:', thisCartProduct);
       // console.log('productData:', menuProduct);
+    }
+
+    getData(){
+      const thisCartProduct = this;
+      thisCartProduct.productData = {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        params: thisCartProduct.params,
+      };
+      // console.log('productData:', productData);
     }
 
     getElements(element){
