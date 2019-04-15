@@ -602,6 +602,8 @@
         priceSingle: thisCartProduct.priceSingle,
         params: thisCartProduct.params,
       };
+
+      return thisCartProduct.productData;
       // console.log('productData:', productData);
     }
 
