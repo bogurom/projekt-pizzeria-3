@@ -202,258 +202,58 @@
       }
     }
   ],
-  "order": [
+  "order": [],
+  "event": [
     {
-      "address": "test",
-      "totalPrice": 29,
-      "id": 1
+      "id": 1,
+      "date": "2019-01-01",
+      "hour": "12:30",
+      "table": 1,
+      "repeat": false,
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
     },
     {
-      "address": "test",
-      "totalPrice": 29,
-      "id": 2
+      "id": 2,
+      "date": "2019-01-01",
+      "hour": "16:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["bread", "lemonWater"]
     },
     {
-      "address": "test",
-      "totalPrice": 29,
-      "id": 3
+      "id": 3,
+      "date": "2019-01-01",
+      "hour": "12:00",
+      "table": 3,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["bread", "lemonWater"]
     },
     {
-      "address": "test",
-      "totalPrice": 65,
-      "id": 4
+      "id": 4,
+      "date": "2019-01-01",
+      "hour": "13:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 4,
+      "ppl": 3,
+      "starters": []
     },
     {
-      "address": "test",
-      "id": 5
-    },
-    {
-      "products": [],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 6
-    },
-    {
-      "products": [
-        null,
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 2,
-      "subtotalPrice": 29,
-      "deliveryFee": 20,
-      "totalPrice": 49,
-      "id": 7
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 8
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 9
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 10
-    },
-    {
-      "products": [
-        null,
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 2,
-      "subtotalPrice": 18,
-      "deliveryFee": 20,
-      "totalPrice": 38,
-      "id": 11
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 12
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 13
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 14
-    },
-    {
-      "products": [
-        null
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 15
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 16
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 17
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 18
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 19
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 1,
-          "price": 9,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 1,
-      "subtotalPrice": 9,
-      "deliveryFee": 20,
-      "totalPrice": 29,
-      "id": 20
-    },
-    {
-      "products": [
-        {
-          "id": "cake",
-          "amount": 3,
-          "price": 27,
-          "priceSingle": 9,
-          "params": {}
-        }
-      ],
-      "phone": {},
-      "address": {},
-      "totalNumber": 3,
-      "subtotalPrice": 27,
-      "deliveryFee": 20,
-      "totalPrice": 47,
-      "id": 21
+      "id": 5,
+      "date": "2019-01-01",
+      "hour": "18:00",
+      "table": 2,
+      "repeat": "daily",
+      "duration": 2,
+      "ppl": 3,
+      "starters": ["lemonWater"]
     }
-  ]
+  ],
+  "booking": []
 }
