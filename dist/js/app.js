@@ -3,7 +3,7 @@ import {Cart} from './components/Cart.js';
 import {Booking} from './components/Booking.js';
 import {select, settings, classNames} from './settings.js';
 
-  const app = {
+  export const app = {
     initMenu: function(){
       const thisApp = this;
 
