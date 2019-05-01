@@ -51,6 +51,7 @@ import {select, settings, classNames} from './settings.js';
       thisApp.initData();
       // thisApp.initMenu();
       thisApp.initCart();
+      thisApp.initBooking();
     },
 
     initCart: function(){
@@ -114,6 +115,13 @@ import {select, settings, classNames} from './settings.js';
       };
 
       window.location.hash = '#/' + pageId;
+    },
+
+    initBooking: function(){
+      const thisApp = this;
+
+      const widgetContainer = document.querySelector(select.containerOf.booking);
+      new Booking(widgetContainer);
     }
   };
 
