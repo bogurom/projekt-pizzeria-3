@@ -28,6 +28,7 @@ export class Booking{
     console.log('thisBooking.dom.hoursAmount:', thisBooking.dom.hoursAmount);
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+    console.log('thisBooking.dom.datePicker:', thisBooking.dom.datePicker);
 
   }
 

@@ -1,6 +1,7 @@
 import {select, settings} from '../settings.js';
 import {utils} from '../utils.js';
 import {BaseWidget} from './BaseWidget.js';
+// import {RangeSlider} from '../../vendor/range-slider.js';
 
 export class HourPicker extends BaseWidget{
   constructor(wrapper){
@@ -17,7 +18,9 @@ export class HourPicker extends BaseWidget{
   initPlugin(){
     const thisWidget = this;
 
-    rangeSlider.create(thisWidget.dom.input);
+    // console.log('rangeSlider:', rangeSlider);
+    // console.log('RangeSlider:', RangeSlider);
+    // rangeSlider.create(thisWidget.dom.input);
 
     thisWidget.dom.input.addEventListener('input', function(){
       thisWidget.value = thisWidget.dom.input;
@@ -35,7 +38,8 @@ export class HourPicker extends BaseWidget{
 
   renderValue(){
     const thisWidget = this;
+    const date = new Date();
 
-    thisWidget.dom.output = parsedValue;
+    thisWidget.dom.output = thisWidget.parseValue(date.getTime());
   }
 }
