@@ -7,10 +7,10 @@ import {select} from '../settings.js';
 import {utils} from '../utils.js';
 
 export class Booking{
-  constructor(){
+  constructor(bookingContainer){
     const thisBooking = this;
 
-    thisBooking.render(app.initBooking);
+    thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
   }
 
@@ -21,7 +21,7 @@ export class Booking{
     thisBooking.dom = {};
     console.log('thisBooking.dom:', thisBooking.dom);
     thisBooking.dom.wrapper = argument;
-    thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHTML);
+    thisBooking.dom.wrapper.innerHTML = generatedHTML;
     console.log('thisBooking.dom.wrapper:', thisBooking.dom.wrapper);
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
