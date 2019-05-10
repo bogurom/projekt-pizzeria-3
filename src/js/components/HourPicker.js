@@ -12,7 +12,7 @@ export class HourPicker extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.input);
     thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
     thisWidget.initPlugin();
-    thisWidget.value = thisWidget.dom.input;
+    thisWidget.value = thisWidget.dom.input.value;
   }
 
   initPlugin(){
@@ -23,7 +23,9 @@ export class HourPicker extends BaseWidget{
     // rangeSlider.create(thisWidget.dom.input);
 
     thisWidget.dom.input.addEventListener('input', function(){
-      thisWidget.value = thisWidget.dom.input;
+      thisWidget.value = thisWidget.dom.input.value;
+      console.log('thisWidget.dom.input.value:', thisWidget.dom.input.value);
+      console.log('thisWidget.dom.output:', thisWidget.dom.output);
     });
   }
 
@@ -40,6 +42,6 @@ export class HourPicker extends BaseWidget{
     const thisWidget = this;
     const date = new Date();
 
-    thisWidget.dom.output = thisWidget.parseValue(date.getTime());
+    thisWidget.dom.output.innerHTML = thisWidget.parseValue(date.getTime());
   }
 }
