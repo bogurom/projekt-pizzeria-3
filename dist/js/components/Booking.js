@@ -48,6 +48,7 @@ export class Booking{
     const startEndDates = {};
     startEndDates[settings.db.dateStartParamKey] = utils.dateToStr(thisBooking.datePicker.minDate);
     startEndDates[settings.db.dateEndParamKey] = utils.dateToStr(thisBooking.datePicker.maxDate);
+    console.log('startEndDates:', startEndDates);
 
     const endDate = {};
     endDate[settings.db.dateEndParamKey] = startEndDates[settings.db.dateEndParamKey];
@@ -58,6 +59,101 @@ export class Booking{
       eventsRepeat: settings.db.repeatParam + '&' + utils.queryParams(endDate),
     };
 
+    const urls = {
+      booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking,
+      eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent,
+      eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat,
+    };
+
+    console.log('getData urls', urls);
     console.log('getData params', params);
+
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+      });
+  }
+
+  parseData(bookings, eventsCurrent, eventsRepeat){
+    const thisBooking = this;
+
+    thisBooking.booked = {};
+    console.log('eventsCurrent:', eventsCurrent);
+    console.log('bookings:', bookings);
+    console.log('eventsRepeat:', eventsRepeat);
+
+    for(let eventCurrent of eventsCurrent){
+      console.log('eventCurrent:', eventCurrent);
+      // console.log('eventCurrent.date:', eventCurrent.date);
+      thisBooking.makeBooked(eventCurrent.date, eventCurrent.hour, eventCurrent.duration, eventCurrent.table);
+    }
+
+    for(let booking of bookings){
+      console.log('booking:', booking);
+      thisBooking.makeBooked(booking.date, booking.hour, booking.duration, booking.table);
+    }
+
+    for(let eventRepeat of eventsRepeat){
+      console.log('eventRepeat:', eventRepeat);
+      const daysArray = [];
+      const datesArray = [];
+
+      for(let i=0; i < settings.datePicker.maxDaysInFuture; i++){
+        daysArray.push(utils.addDays(thisBooking.datePicker.minDate, 1));
+      }
+
+      for(let day of daysArray){
+        const dateString = utils.dateToStr(day);
+        datesArray.push(dateString);
+      }
+
+      for(let date of datesArray){
+        thisBooking.makeBooked(date, eventRepeat.hour, eventRepeat.duration, eventRepeat.table);
+      }
+
+      console.log('daysArray:', daysArray);
+      console.log('datesArray:', datesArray);
+      console.log('thisBooking.datePicker.minDate:', thisBooking.datePicker.minDate);
+      console.log('thisBooking.dom.datePicker:', thisBooking.dom.datePicker)
+      console.log('thisBooking.datePicker', thisBooking.datePicker);
+
+    }
+  }
+
+  makeBooked(date, hour, duration, table){
+    const thisBooking = this;
+    const startingTime = utils.hourToNumber(hour);
+    const lastTimeBlock = duration - 0.5 + startingTime;
+    const timeBlocksArray = [];
+
+    for(let i=0; i < duration*2; i++){
+      timeBlocksArray.push(startingTime + i * 0.5);
+    }
+
+    console.log('timeBlocksArray:', timeBlocksArray);
+    console.log('startingTime:', startingTime);
+    console.log('lastTimeBlock:', lastTimeBlock);
+
+    thisBooking.booked[date] = {};
+
+    for(let timeBlock of timeBlocksArray){
+      thisBooking.booked[date][timeBlock] = [table];
+    }
+
+    // thisBooking.booked[date][startingTime] = [table];
+    // thisBooking.booked[date][lastTimeBlock] = [table];
+
+    console.log('thisBooking.booked:', thisBooking.booked);
   }
 }
