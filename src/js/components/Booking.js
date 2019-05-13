@@ -176,13 +176,21 @@ export class Booking{
       const tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
       console.log('tableNumber:', tableNumber);
 
-      if (thisBooking.booked[thisBooking.date] && thisBooking.booked[thisBooking.date][thisBooking.hour] && thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(tableNumber) >= 0){
-        console.log('testing if else, true');
-        table.classList.addClass(classNames.booking.tableBooked);
+      console.log('thisBooking.booked.hasOwnProperty([thisBooking.date]):', thisBooking.booked.hasOwnProperty([thisBooking.date]));
+      console.log('thisBooking.booked[thisBooking.date].hasOwnProperty([thisBooking.hour]):', thisBooking.booked[thisBooking.date].hasOwnProperty([thisBooking.hour]));
+      // console.log('[thisBooking.hour]:', [thisBooking.hour]);
+      // console.log('thisBooking.booked[thisBooking.date][thisBooking.hour]:', thisBooking.booked[thisBooking.date]);
+      // console.log('thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(tableNumber) >= 0):', thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(tableNumber) >= 0);
+
+      if (thisBooking.booked.hasOwnProperty([thisBooking.date]) && thisBooking.booked[thisBooking.date].hasOwnProperty([thisBooking.hour]) && thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(tableNumber) >= 0){
+        console.log('testing - true');
+        table.classList.add(classNames.booking.tableBooked);
       } else {
-        console.log('testing - not true;');
-        // table.classList.removeClass(classNames.booking.tableBooked);
+        console.log('testing - false;');
+        table.classList.remove(classNames.booking.tableBooked);
       }
+
+      console.log('[thisBooking.hour]:', [thisBooking.hour]);
     }
   }
 }
