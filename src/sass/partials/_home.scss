@@ -1,0 +1,229 @@
+.home-page {
+  background-color: $color-light;
+  margin-top: 20px;
+  padding: 0 40px 50px 40px;
+
+}
+
+/* Box section */
+
+.box-row {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  justify-content:space-between;
+  height: 110px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 1;
+  flex-grow: 0;
+  text-decoration: none;
+  color: $color-light;
+}
+
+.box-small {
+  flex-basis: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  transition: all 1s ease-in-out;
+}
+//
+// .box-small:hover {
+//   border-radius: 50%;
+// }
+
+.box-small:hover .show-on-hover {
+  display: inline-block;
+}
+
+.box-small:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-dark;
+  opacity: 0.7;
+}
+
+.box-small h1, p {
+  z-index: 1;
+}
+
+.box-small:last-child {
+  margin-left: 10px;
+}
+
+.box-big {
+  flex-basis: 100%;
+  margin-top: 10px;
+  background-color: $color-main;
+}
+
+.box-big h1, h3 {
+  margin: 0;
+}
+
+.order-online {
+  background-image: url("https://cdn.pixabay.com/photo/2019/05/07/21/13/basil-4187089_1280.jpg");
+}
+
+.book-a-table {
+  background-image: url("https://cdn.pixabay.com/photo/2019/05/07/21/13/basil-4187089_1280.jpg");
+}
+
+.show-on-hover {
+  // border: 1px solid red;
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding: 0;
+  display: none;
+  // transition: all 0.6s ease-in-out;
+}
+
+
+/* Carousel */
+
+.carousel-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel-image, .slideshow {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.carousel-image {
+  flex-basis: 32%;
+  // border: 1px solid blue;
+  border-radius: 7px;
+  height: 200px;
+  width: 200px;
+  background-image: url(https://cdn.pixabay.com/photo/2017/06/07/10/53/pizza-2380025_1280.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slideshow {
+  flex-basis: 67%;
+  // border: 1px solid red;
+  padding: 30px;
+  padding-right: 0;
+}
+
+.slide {
+  display: none;
+}
+
+.dots-navigation{
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+.dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 6px;
+  background-color: $color-gray;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: $color-dark;
+}
+
+
+
+/* gallery */
+
+.gallery {
+  // border: 1px solid red;
+}
+.gallery-row {
+  display: flex;
+  flex-basis: 48%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  // border: 1px solid red;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.gallery-image {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 32%;
+  flex-grow: 0;
+  flex-shrink: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 7px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  justify-content: center;
+  position: relative;
+}
+
+.gallery-image:hover {
+  cursor: pointer;
+}
+
+.gallery-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $color-dark;
+  opacity: 0;
+  border-radius: 7px;
+  transition: all 0.5s ease-in-out;
+}
+
+.gallery-image:hover::after {
+  opacity: 0.5;
+}
+
+.gallery-image-1 {
+  background-image: url(https://cdn.pixabay.com/photo/2015/05/15/14/55/cafe-768771_1280.jpg);
+}
+
+.gallery-icons {
+  text-align: center;
+  color: $color-light;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.gallery-icons i {
+  margin: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.gallery-icons i:hover {
+  color: $color-main;
+}
+
+.gallery-link {
+  color: $color-main;
+  padding-top: 5px;
+}

@@ -16,3 +16,15 @@
   font-weight: $font-bold;
   text-transform: uppercase;
 }
+
+p {
+  font-size: 11px;
+}
+
+.author-name {
+  font-style: italic;
+}
+
+.box > h1, h2 {
+  margin: 0;
+}
